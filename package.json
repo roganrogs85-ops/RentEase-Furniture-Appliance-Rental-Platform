@@ -1,0 +1,20 @@
+{
+  "name": "rentease-platform",
+  "version": "1.0.0",
+  "description": "Rentease furniture and appliance rental platform with static frontend and Node.js REST backend.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "check": "node --check server.js && node --check app.js"
+  },
+  "keywords": [
+    "rental",
+    "furniture",
+    "appliances",
+    "node",
+    "rest-api"
+  ],
+  "author": "",
+  "license": "MIT"
+}

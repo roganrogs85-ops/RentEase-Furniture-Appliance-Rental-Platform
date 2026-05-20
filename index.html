@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Rentease is a responsive furniture and appliance rental platform with catalog, cart, delivery scheduling, active rentals, support, and admin dashboard.">
+  <title>Rentease | Furniture & Appliance Rentals</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar" data-topbar>
+    <a class="brand" href="#home" aria-label="Rentease home">
+      <span class="brand-mark">R</span>
+      <span>Rentease</span>
+    </a>
+
+    <button class="menu-button" type="button" data-menu-toggle aria-label="Toggle navigation">
+      <i data-lucide="menu"></i>
+    </button>
+
+    <nav class="nav-links" data-nav-menu aria-label="Primary navigation">
+      <a href="#catalog">Catalog</a>
+      <a href="#how">How it works</a>
+      <a href="#rentals">Rentals</a>
+      <a href="#admin">Admin</a>
+      <a href="#docs">Docs</a>
+    </nav>
+
+    <div class="topbar-actions">
+      <label class="search-control" aria-label="Search rental products">
+        <i data-lucide="search"></i>
+        <input id="searchInput" type="search" placeholder="Search furniture, appliances" autocomplete="off">
+      </label>
+      <button class="icon-button cart-trigger" type="button" data-open-cart aria-label="Open cart">
+        <i data-lucide="shopping-cart"></i>
+        <span data-cart-count>0</span>
+      </button>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero" aria-labelledby="heroTitle">
+      <img class="hero-media" src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1800&q=80" alt="Modern furnished living room with sofa, table, and home appliances">
+      <div class="hero-scrim"></div>
+      <div class="hero-content">
+        <p class="eyebrow">Furniture & appliance rental platform</p>
+        <h1 id="heroTitle">Move lighter. Live ready.</h1>
+        <p class="hero-copy">Rent beds, sofas, refrigerators, washing machines, TVs, and work-from-home essentials with flexible monthly plans, scheduled delivery, maintenance support, and relocation-friendly returns.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#catalog">
+            <i data-lucide="package-search"></i>
+            Browse rentals
+          </a>
+          <button class="button button-secondary" type="button" data-open-auth>
+            <i data-lucide="user-plus"></i>
+            Create account
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="metrics" aria-label="Rentease operating metrics">
+      <div>
+        <strong data-kpi-active>126</strong>
+        <span>Active rentals</span>
+      </div>
+      <div>
+        <strong data-kpi-mrr>Rs 4.8L</strong>
+        <span>Monthly recurring revenue</span>
+      </div>
+      <div>
+        <strong>87%</strong>
+        <span>Product utilization</span>
+      </div>
+      <div>
+        <strong>18h</strong>
+        <span>Avg. support resolution</span>
+      </div>
+    </section>
+
+    <section class="section" id="catalog" aria-labelledby="catalogTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Catalog</p>
+          <h2 id="catalogTitle">Rent by room, budget, and tenure</h2>
+        </div>
+        <div class="filter-group" role="group" aria-label="Filter products">
+          <button class="filter-button active" type="button" data-filter="all">All</button>
+          <button class="filter-button" type="button" data-filter="furniture">Furniture</button>
+          <button class="filter-button" type="button" data-filter="appliance">Appliances</button>
+          <button class="filter-button" type="button" data-filter="bundle">Bundles</button>
+        </div>
+      </div>
+      <div class="catalog-grid" id="catalogGrid" aria-live="polite"></div>
+    </section>
+
+    <section class="workflow" id="how" aria-labelledby="howTitle">
+      <div class="workflow-copy">
+        <p class="eyebrow">Flow</p>
+        <h2 id="howTitle">From selection to pickup in one clean loop</h2>
+        <p>Rentease keeps the renter journey simple while giving operators enough structure to manage inventory, deposits, delivery capacity, service areas, maintenance, returns, and damage claims.</p>
+      </div>
+      <div class="steps">
+        <article>
+          <span>01</span>
+          <h3>Choose items</h3>
+          <p>Browse local inventory, compare monthly rent, deposit, tenure, and availability by city.</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>Schedule delivery</h3>
+          <p>Pick address, date, city, and rental tenure during checkout with payment-ready totals.</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>Manage rentals</h3>
+          <p>Track active rentals, extend plans, request maintenance, and schedule pickup or relocation.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="dashboard-grid" id="rentals" aria-labelledby="rentalsTitle">
+      <div class="panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">User workspace</p>
+            <h2 id="rentalsTitle">Active rentals</h2>
+          </div>
+          <button class="ghost-button" type="button" data-seed-rental>
+            <i data-lucide="plus-circle"></i>
+            Demo rental
+          </button>
+        </div>
+        <div class="rental-list" id="rentalList" aria-live="polite"></div>
+      </div>
+
+      <div class="panel support-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="eyebrow">Maintenance</p>
+            <h2>Service request</h2>
+          </div>
+        </div>
+        <form class="form-stack" id="supportForm">
+          <label>
+            Product
+            <select id="supportProduct" required></select>
+          </label>
+          <label>
+            Issue type
+            <select id="supportIssue" required>
+              <option>Repair needed</option>
+              <option>Installation support</option>
+              <option>Relocation pickup</option>
+              <option>Damage inspection</option>
+            </select>
+          </label>
+          <label>
+            Notes
+            <textarea id="supportNotes" rows="4" placeholder="Describe the issue, preferred timing, and contact details." required></textarea>
+          </label>
+          <button class="button button-primary" type="submit">
+            <i data-lucide="wrench"></i>
+            Raise request
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <section class="section" id="admin" aria-labelledby="adminTitle">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Admin dashboard</p>
+          <h2 id="adminTitle">Operations command center</h2>
+        </div>
+        <button class="ghost-button" type="button" data-export-report>
+          <i data-lucide="download"></i>
+          Export report
+        </button>
+      </div>
+      <div class="admin-grid">
+        <article class="admin-card">
+          <i data-lucide="warehouse"></i>
+          <h3>Inventory tracking</h3>
+          <p>Monitor stock, rented units, service hold, availability, and city-level demand.</p>
+          <div class="mini-table" id="inventoryTable"></div>
+        </article>
+        <article class="admin-card">
+          <i data-lucide="truck"></i>
+          <h3>Delivery & pickup</h3>
+          <p>Queue local delivery slots, return pickups, and relocation support from one schedule.</p>
+          <div class="schedule-list" id="scheduleList"></div>
+        </article>
+        <article class="admin-card">
+          <i data-lucide="shield-alert"></i>
+          <h3>Claims & disputes</h3>
+          <p>Handle deposit deductions, wear-and-tear checks, maintenance tickets, and escalations.</p>
+          <div class="claim-list" id="claimList"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="docs" id="docs" aria-labelledby="docsTitle">
+      <div>
+        <p class="eyebrow">Documentation</p>
+        <h2 id="docsTitle">PRD and technical notes are included</h2>
+        <p>The README documents the product scope, user/admin capabilities, data model, REST API plan, security posture, KPIs, deployment path, and future roadmap.</p>
+      </div>
+      <a class="button button-secondary" href="README.md">
+        <i data-lucide="file-text"></i>
+        Open README
+      </a>
+    </section>
+  </main>
+
+  <aside class="cart-drawer" data-cart aria-hidden="true" aria-label="Rental cart">
+    <div class="drawer-header">
+      <div>
+        <p class="eyebrow">Checkout</p>
+        <h2>Rental cart</h2>
+      </div>
+      <button class="icon-button" type="button" data-close-cart aria-label="Close cart">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <div class="cart-items" id="cartItems" aria-live="polite"></div>
+    <form class="checkout-form" id="checkoutForm">
+      <div class="totals">
+        <span>Monthly rent</span>
+        <strong data-total-rent>Rs 0</strong>
+        <span>Security deposit</span>
+        <strong data-total-deposit>Rs 0</strong>
+      </div>
+      <label>
+        City
+        <select id="checkoutCity" required>
+          <option>Bengaluru</option>
+          <option>Delhi NCR</option>
+          <option>Mumbai</option>
+          <option>Pune</option>
+          <option>Hyderabad</option>
+        </select>
+      </label>
+      <label>
+        Delivery date
+        <input id="deliveryDate" type="date" required>
+      </label>
+      <label>
+        Delivery address
+        <textarea id="deliveryAddress" rows="3" placeholder="Flat, street, landmark, pincode" required></textarea>
+      </label>
+      <button class="button button-primary" type="submit">
+        <i data-lucide="calendar-check"></i>
+        Confirm rental
+      </button>
+    </form>
+  </aside>
+
+  <section class="modal" data-product-modal aria-hidden="true">
+    <article class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close icon-button" type="button" data-close-product aria-label="Close product details">
+        <i data-lucide="x"></i>
+      </button>
+      <img class="modal-image" data-modal-image alt="">
+      <div class="modal-content">
+        <p class="eyebrow" data-modal-category></p>
+        <h2 id="modalTitle" data-modal-title></h2>
+        <p data-modal-description></p>
+        <div class="product-meta" data-modal-meta></div>
+        <div class="price-row">
+          <span>
+            <small>Monthly rent</small>
+            <strong data-modal-rent></strong>
+          </span>
+          <span>
+            <small>Security deposit</small>
+            <strong data-modal-deposit></strong>
+          </span>
+        </div>
+        <div class="tenure-select" data-modal-tenures></div>
+        <div class="hero-actions">
+          <button class="button button-primary" type="button" data-modal-add>
+            <i data-lucide="shopping-cart"></i>
+            Add to cart
+          </button>
+          <button class="button button-secondary" type="button" data-modal-maintenance>
+            <i data-lucide="wrench"></i>
+            Request support
+          </button>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="modal" data-auth-modal aria-hidden="true">
+    <article class="auth-panel" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+      <button class="modal-close icon-button" type="button" data-close-auth aria-label="Close registration">
+        <i data-lucide="x"></i>
+      </button>
+      <p class="eyebrow">Secure login ready</p>
+      <h2 id="authTitle">Create renter account</h2>
+      <form class="form-stack" id="authForm">
+        <label>
+          Full name
+          <input id="authName" type="text" placeholder="Aarav Mehta" required>
+        </label>
+        <label>
+          Email
+          <input id="authEmail" type="email" placeholder="you@example.com" required>
+        </label>
+        <label>
+          City
+          <select id="authCity" required>
+            <option>Bengaluru</option>
+            <option>Delhi NCR</option>
+            <option>Mumbai</option>
+            <option>Pune</option>
+            <option>Hyderabad</option>
+          </select>
+        </label>
+        <button class="button button-primary" type="submit">
+          <i data-lucide="lock"></i>
+          Save profile
+        </button>
+      </form>
+    </article>
+  </section>
+
+  <div class="toast" data-toast role="status" aria-live="polite"></div>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
